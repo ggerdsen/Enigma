@@ -15,8 +15,8 @@ class Enigma
     rand(99999).to_s.rjust(5,'0')
   end
 
-  def self.generate_offsets
-    raw_offsets = Date.today.strftime("%d%m%y").to_i**2
+  def self.generate_offsets(date)
+    raw_offsets = Date.to_i**2
     last_four = raw_offsets.to_s.chars.last(4).join
     split_offsets(last_four)
   end
