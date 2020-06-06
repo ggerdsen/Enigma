@@ -18,4 +18,10 @@ class EnigmaTest < Minitest::Test
     assert Enigma.generate_offsets
   end
 
+  def test_genertate_offsets_helper_method
+    skip
+    Enigma.expects(:split_offsets("1234")).returns(rand(9999))
+    assert Enigma.split_offsets("1234")
+  end
+
 end
