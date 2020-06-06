@@ -13,8 +13,9 @@ class EnigmaTest < Minitest::Test
     assert Enigma.generate_key
   end
 
-  def test_it_can_generate_random_
-    # ruby ./lib/encrypt.rb
+  def test_it_can_generate_random_offsets
+    Enigma.expects(:generate_offsets).returns(rand(9999))
+    assert Enigma.generate_offsets
   end
 
 end

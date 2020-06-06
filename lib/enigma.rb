@@ -6,11 +6,18 @@ class Enigma
     rand(99999).to_s.rjust(5,'0')
   end
 
-  def self.generate_offset
+  def self.generate_offsets
     raw_offsets = Date.today.strftime("%d%m%y").to_i**2
-    raw_offsets.to_s.chars.last(4).join.to_i
-    # binding.pry
+    last_four = raw_offsets.to_s.chars.last(4).join
+    split_offsets(last_four)
   end
+
+  def self.split_offsets(last_four)
+    offset_array = []
+    last_four.split("").each { |digit| offset_array << digit.to_i}
+    offset_array
+  end
+# last_four.split("").map { |digit| offset_array << digit.to_i}
   #
   # Consider the date formatted as a number, DDMMYY. If the date is August 4, 1995, it would be represented as 040895.
   # Square the numeric form (1672401025) x
