@@ -2,6 +2,15 @@ require 'date'
 
 class Enigma
 
+  def self.encrypt(message, key, date)
+    p "hi"
+    # binding.pry
+  end
+
+  def self.character_array
+    ("a".."z").to_a << " "
+  end
+
   def self.generate_key
     rand(99999).to_s.rjust(5,'0')
   end
