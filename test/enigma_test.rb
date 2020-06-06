@@ -15,6 +15,11 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, Enigma.character_array
   end
 
+  def test_it_can_combine_to_shift
+    Enigma.expects(:shift).returns(rand(9999))
+    assert Enigma.shift
+  end
+
   def test_it_can_generate_random_key
     Enigma.expects(:generate_key).returns(rand(99999).to_s.rjust(5,'0'))
     assert Enigma.generate_key
