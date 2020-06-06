@@ -8,8 +8,12 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, enigma
   end
 
+  def test_it_can_generate_random_key
+    Enigma.expects(:generate_key).returns(rand(99999).to_s.rjust(5,'0'))
+    assert Enigma.generate_key
+  end
 
-  def test_it_can_open_files
+  def test_it_can_generate_random_
     # ruby ./lib/encrypt.rb
   end
 
