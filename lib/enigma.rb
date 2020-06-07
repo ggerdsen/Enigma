@@ -3,7 +3,16 @@ require 'date'
 class Enigma
 
   def self.encrypt(message, key, date)
-    shift(key, date)
+    shifter = shift(key, date)
+    array = []
+    test_array = [1,3,5,7]
+    x = 0
+    message.each_char do |char|
+      plain_index = character_array.index(char.downcase)
+      # encrypted_index = plain_index + shifter
+      p test_array.rotate(x).first
+      x += 1
+    end
   end
 
   def self.character_array
@@ -11,13 +20,13 @@ class Enigma
   end
 
   def self.shift(key, date)
-    key_hash = Hash.new(0)
+    key_array = []
     x = 0
     key_shift(key).each do |k, value|
-      key_hash[k] = value + offset_shift(date)[x]
+      key_array << value + offset_shift(date)[x]
       x += 1
     end
-    key_hash
+    key_array
   end
 
   def self.offset_shift(date)

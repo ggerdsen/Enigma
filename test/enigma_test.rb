@@ -33,7 +33,7 @@ class EnigmaTest < Minitest::Test
   def test_it_can_combine_key_offset
     key = "23189"
     date = "060620"
-    expected = {"a"=>27, "b"=>35, "c"=>18, "d"=>89}
+    expected = [27,35,18,89]
     assert_equal expected, Enigma.shift(key, date)
   end
 
