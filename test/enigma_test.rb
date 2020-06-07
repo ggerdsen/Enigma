@@ -37,4 +37,12 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, Enigma.shift(key, date)
   end
 
+  def test_it_can_encrypt_message
+    expected = "yyitl,lolxid!"
+    key = "06678"
+    date = "060620"
+    message = "Hello, World!"
+    assert_equal expected, Enigma.encrypt(message, key, date)
+  end
+
 end

@@ -5,14 +5,23 @@ class Enigma
   def self.encrypt(message, key, date)
     shifter = shift(key, date)
     array = []
-    test_array = [1,3,5,7]
+    encrypted_message = []
+    encrypted_index = 0
     x = 0
     message.each_char do |char|
-      plain_index = character_array.index(char.downcase)
-      # encrypted_index = plain_index + shifter
-      p test_array.rotate(x).first
+      if character_array.include?(char.downcase)
+        plain_index = character_array.index(char.downcase)
+        shifted_index = shifter.rotate(x).first
+        encrypted_index = plain_index + shifted_index
+        array = character_array.rotate(encrypted_index)
+        array[plain_index]
+        encrypted_message << array[plain_index]
+      else
+        encrypted_message << char
+      end
       x += 1
     end
+    encrypted_message.join
   end
 
   def self.character_array
