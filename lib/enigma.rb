@@ -4,7 +4,6 @@ class Enigma
 
   def self.encrypt(message, key, date)
     shifter = shift(key, date)
-    array = []
     encrypted_message = []
     encrypted_index = 0
     x = 0
