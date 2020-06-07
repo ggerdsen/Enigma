@@ -38,7 +38,11 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_encrypt_message
-    expected = "yyitl,lolxid!"
+    expected = {
+                :encryption=>"yyitl,lolxid!",
+                :key=>"06678",
+                :date=>"060620"
+                }
     key = "06678"
     date = "060620"
     message = "Hello, World!"

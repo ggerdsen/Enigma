@@ -8,6 +8,7 @@ class Enigma
     encrypted_message = []
     encrypted_index = 0
     x = 0
+    return_hash = Hash.new(0)
     message.each_char do |char|
       if character_array.include?(char.downcase)
         plain_index = character_array.index(char.downcase)
@@ -21,7 +22,10 @@ class Enigma
       end
       x += 1
     end
-    encrypted_message.join
+    return_hash[:encryption] = encrypted_message.join
+    return_hash[:key] = key
+    return_hash[:date] = date
+    return_hash
   end
 
   def self.character_array
