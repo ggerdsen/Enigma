@@ -3,9 +3,7 @@ require 'date'
 class Enigma
 
   def self.encrypt(message, key, date)
-    # binding.pry
     shifter = shift(key, date)
-    array = []
     encrypted_message = []
     encrypted_index = 0
     x = 0
@@ -15,9 +13,7 @@ class Enigma
         plain_index = character_array.index(char.downcase)
         shifted_index = shifter.rotate(x).first
         encrypted_index = plain_index + shifted_index
-        array = character_array.rotate(encrypted_index)
-        array[plain_index]
-        encrypted_message << array[plain_index]
+        encrypted_message << character_array.rotate(encrypted_index).first
       else
         encrypted_message << char
       end
@@ -26,7 +22,30 @@ class Enigma
     return_hash[:encryption] = encrypted_message.join
     return_hash[:key] = key
     return_hash[:date] = date
-    p return_hash
+    return_hash
+  end
+
+  def self.decrypt(message, key, date)
+    shifter = shift(key, date)
+    decrypted_message = []
+    encrypted_index = 0
+    x = 0
+    return_hash = Hash.new(0)
+    message.each_char do |char|
+      if character_array.include?(char.downcase)
+        plain_index = character_array.index(char.downcase)
+        shifted_index = shifter.rotate(x).first
+        encrypted_index = plain_index - shifted_index
+        decrypted_message << character_array.rotate(encrypted_index)[0]
+      else
+        decrypted_message << char
+      end
+      x += 1
+    end
+    return_hash[:decryption] = decrypted_message.join
+    return_hash[:key] = key
+    return_hash[:date] = date
+    return_hash
   end
 
   def self.character_array

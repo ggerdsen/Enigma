@@ -39,14 +39,28 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_encrypt_message
     expected = {
-                :encryption=>"yyitl,lolxid!",
+                :encryption=>"ruyiy,mtygya!",
                 :key=>"06678",
                 :date=>"060620"
                 }
     key = "06678"
     date = "060620"
     message = "Hello, World!"
+    # binding.pry
     assert_equal expected, Enigma.encrypt(message, key, date)
+  end
+
+  def test_it_can_decrypt_message
+    expected = {
+                :decryption=>"Hello, World!",
+                :key=>"06678",
+                :date=>"060620"
+                }
+    key = "06678"
+    date = "060620"
+    message = "ruyiy,mtygya!"
+    binding.pry
+    assert_equal expected, Enigma.decrypt(message, key, date)
   end
 
 end

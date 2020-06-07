@@ -1,3 +1,4 @@
+
 require 'pry'
 require_relative 'enigma'
 
@@ -10,8 +11,11 @@ message = file.read
 file.close
 
 date_today = Date.today.strftime("%d%m%y")
+encrypted_message = Enigma.encrypt(message, Enigma.generate_key, date_today)
+p File.write ARGV[1], encrypted_message[:encryption]
 
-File.write ARGV[1], Enigma.encrypt(message, Enigma.generate_key, date_today)
 # p Enigma.generate_key
 # p Enigma.generate_offsets
 # Encrypt.message(message, key, date)
+
+
