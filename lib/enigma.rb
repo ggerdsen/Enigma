@@ -3,6 +3,7 @@ require 'date'
 class Enigma
 
   def self.encrypt(message, key, date)
+    # binding.pry
     shifter = shift(key, date)
     array = []
     encrypted_message = []
@@ -25,7 +26,7 @@ class Enigma
     return_hash[:encryption] = encrypted_message.join
     return_hash[:key] = key
     return_hash[:date] = date
-    return_hash
+    p return_hash
   end
 
   def self.character_array
