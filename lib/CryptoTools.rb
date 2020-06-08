@@ -6,7 +6,7 @@ class CryptoTools
   def analyze(message, key, date, encrypt)
     cipher(message, key, date, encrypt)
   end
-  
+
   def character_array
     ("a".."z").to_a << " "
   end
