@@ -26,12 +26,15 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_generate_random_key
     @enigma.expects(:generate_key).returns(rand(99999).to_s.rjust(5,'0'))
+    # assert @enigma.generate_key.class == String
+    # assert @enigma.generate_key.length == 5
     assert @enigma.generate_key
   end
 
   def test_it_can_generate_random_offsets
-    @enigma.expects(:generate_offsets).returns(rand(9999))
-    assert @enigma.generate_offsets
+    date = "060620"
+    expected = [4,4,0,0]
+    assert_equal expected, @enigma.generate_offsets(date)
   end
 
   def test_it_can_combine_key_offset
