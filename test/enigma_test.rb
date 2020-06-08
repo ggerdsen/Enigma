@@ -3,6 +3,10 @@ require './lib/enigma'
 
 class EnigmaTest < Minitest::Test
 
+  def setup
+    @enigma = Enigma.new
+  end
+
   def test_it_exists
     enigma = Enigma.new
     assert_instance_of Enigma, enigma
@@ -22,7 +26,7 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_generate_random_key
     Enigma.expects(:generate_key).returns(rand(99999).to_s.rjust(5,'0'))
-    assert Enigma.generate_key
+    assert nigma.generate_key
   end
 
   def test_it_can_generate_random_offsets
@@ -52,14 +56,14 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_decrypt_message
     expected = {
-                :decryption=>"Hello, World!",
+                :decryption=>"hello, world!",
                 :key=>"06678",
                 :date=>"060620"
                 }
     key = "06678"
     date = "060620"
     message = "ruyiy,mtygya!"
-    binding.pry
+    # binding.pry
     assert_equal expected, Enigma.decrypt(message, key, date)
   end
 
