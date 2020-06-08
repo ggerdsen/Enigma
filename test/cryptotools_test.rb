@@ -21,8 +21,10 @@ class CrytpoToolsTest < Minitest::Test
   end
 
   def test_it_can_combine_to_shift
-    @cryptotools.expects(:shift).returns(rand(9999))
-    assert @cryptotools.shift
+    key = "23189"
+    date = "060620"
+    expected = [27, 35, 18, 89]
+    assert_equal expected, @enigma.shift(key, date)
   end
 
   def test_it_can_generate_random_key
