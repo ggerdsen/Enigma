@@ -27,11 +27,14 @@ class CrytpoToolsTest < Minitest::Test
     assert_equal expected, @cryptotools.shift(key, date)
   end
 
+  def test_it_can_generate_random_key_mock_stub
+    @enigma.expects(:generate_key).returns(rand(99999).to_s.rjust(5,'0'))
+    assert @enigma.generate_key
+  end
+
   def test_it_can_generate_random_key
-    @cryptotools.expects(:generate_key).returns(rand(99999).to_s.rjust(5,'0'))
-    assert @cryptotools.generate_key.class == String
-    # assert @cryptotools.generate_key.length == 5
-    # assert @cryptotools.generate_key
+    assert_equal String, @enigma.generate_key.class
+    assert_equal 5, @enigma.generate_key.length
   end
 
   def test_it_can_generate_random_offsets

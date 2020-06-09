@@ -26,11 +26,14 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.shift(key, date)
   end
 
-  def test_it_can_generate_random_key
+  def test_it_can_generate_random_key_mock_stub
     @enigma.expects(:generate_key).returns(rand(99999).to_s.rjust(5,'0'))
-    # assert @enigma.generate_key.class == String
-    # assert @enigma.generate_key.length == 5
     assert @enigma.generate_key
+  end
+
+  def test_it_can_generate_random_key
+    assert_equal String, @enigma.generate_key.class
+    assert_equal 5, @enigma.generate_key.length
   end
 
   def test_it_can_generate_random_offsets
@@ -51,6 +54,12 @@ class EnigmaTest < Minitest::Test
     expected = [27,35,18,89]
     assert_equal expected, @enigma.shift(key, date)
   end
+  
+  def test_it_can_split_offsets_to_array
+    expected = [4, 4, 0, 0]
+    last_four = "4400"
+    assert_equal expected, @enigma.split_offsets(last_four)
+  end
 
   def test_it_can_encrypt_message
     expected = {
@@ -61,7 +70,6 @@ class EnigmaTest < Minitest::Test
     key = "06678"
     date = "060620"
     message = "Hello, World!"
-    # binding.pry
     assert_equal expected, @enigma.encrypt(message, key, date)
   end
 
@@ -74,7 +82,6 @@ class EnigmaTest < Minitest::Test
     key = "06678"
     date = "060620"
     message = "ruyiy,mtygya!"
-    # binding.pry
     assert_equal expected, @enigma.decrypt(message, key, date)
   end
 
