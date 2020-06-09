@@ -1,9 +1,7 @@
 module Cipherable
   
   def cipher(cipher_data)
-    
     ciphered_message = []
-    encrypted_index = 0
     shift_counter = 0
     return_hash = Hash.new(0)
     cipher_data[:ciphertext].each_char do |char|
