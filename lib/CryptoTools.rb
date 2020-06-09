@@ -3,8 +3,13 @@ require_relative './modules/cipherable'
 class CryptoTools
   include Cipherable
   
-  def analyze(message, key, date, encrypt)
-    cipher(message, key, date, encrypt)
+  def analyze(message, key, date, task)
+    shifter = shift(key, date)
+    crack_offset = generate_offsets(date)
+    cipher_data = {ciphertext: message, key: key, date: date,
+                  shifter: shifter, task: task, crack_offset:
+                  crack_offset}
+    cipher(cipher_data)
   end
 
   def character_array

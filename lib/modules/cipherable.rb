@@ -1,27 +1,25 @@
 module Cipherable
   
-  def cipher(message, key, date, encrypt)
-    shifter = shift(key, date)
-    decrypted_message = []
-    encrypted_index = 0
+  def cipher(cipher_data)
+    ciphered_message = []
     shift_counter = 0
     return_hash = Hash.new(0)
-    message.each_char do |char|
+    cipher_data[:ciphertext].each_char do |char|
       if character_array.include?(char.downcase)
-        plain_index = character_array.index(char.downcase)
-        shifted_index = shifter.rotate(shift_counter).first
-        encrypted_index = plain_index + shifted_index if encrypt == true
-        encrypted_index = plain_index - shifted_index if encrypt == false
-        decrypted_message << character_array.rotate(encrypted_index).first
+        index = character_array.index(char.downcase)
+        shifted_index = cipher_data[:shifter].rotate(shift_counter).first
+        new_index = index + shifted_index if cipher_data[:task] == "encrypt"
+        new_index = index - shifted_index if cipher_data[:task] == "decrypt"
+        ciphered_message << character_array.rotate(new_index).first
       else
-        decrypted_message << char
+        ciphered_message << char
       end
       shift_counter += 1
     end
-    return_hash[:encryption] = decrypted_message.join if encrypt == true
-    return_hash[:decryption] = decrypted_message.join if encrypt == false
-    return_hash[:key] = key
-    return_hash[:date] = date
+    return_hash[:encryption] = ciphered_message.join if cipher_data[:task] == "encrypt"
+    return_hash[:decryption] = ciphered_message.join if cipher_data[:task] == "decrypt"
+    return_hash[:key] = cipher_data[:key]
+    return_hash[:date] = cipher_data[:date]
     return_hash
   end
   

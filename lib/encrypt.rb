@@ -13,5 +13,3 @@ encrypted_message = enigma.encrypt(message, enigma.generate_key, date_today)
 File.write 'lib/'+ARGV[1], encrypted_message[:encryption]
 
 puts "Created #{ARGV[1]} with the key #{encrypted_message[:key]} and date #{encrypted_message[:date]}"
-
-
