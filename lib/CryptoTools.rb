@@ -5,8 +5,10 @@ class CryptoTools
   
   def analyze(message, key, date, task)
     shifter = shift(key, date)
+    crack_offset = generate_offsets(date)
     cipher_data = {ciphertext: message, key: key, date: date,
-                  shifter: shifter, task: task}
+                  shifter: shifter, task: task, crack_offset:
+                  crack_offset}
     cipher(cipher_data)
   end
 
