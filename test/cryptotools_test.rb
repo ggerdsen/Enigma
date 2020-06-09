@@ -24,7 +24,7 @@ class CrytpoToolsTest < Minitest::Test
     key = "23189"
     date = "060620"
     expected = [27, 35, 18, 89]
-    assert_equal expected, @enigma.shift(key, date)
+    assert_equal expected, @cryptotools.shift(key, date)
   end
 
   def test_it_can_generate_random_key
@@ -37,7 +37,7 @@ class CrytpoToolsTest < Minitest::Test
   def test_it_can_generate_random_offsets
     date = "060620"
     expected = [4,4,0,0]
-    assert_equal expected, @enigma.generate_offsets(date)
+    assert_equal expected, @cryptotools.generate_offsets(date)
   end
   
   def test_it_can_generate_random_offsets_via_offset_shift
@@ -51,30 +51,6 @@ class CrytpoToolsTest < Minitest::Test
     date = "060620"
     expected = [27,35,18,89]
     assert_equal expected, @cryptotools.shift(key, date)
-  end
-
-  def test_it_can_encrypt_message
-    expected = {
-                :encryption=>"ruyiy,mtygya!",
-                :key=>"06678",
-                :date=>"060620"
-                }
-    key = "06678"
-    date = "060620"
-    message = "Hello, World!"
-    assert_equal expected, @enigma.encrypt(message, key, date)
-  end
-
-  def test_it_can_decrypt_message
-    expected = {
-                :decryption=>"hello, world!",
-                :key=>"06678",
-                :date=>"060620"
-                }
-    key = "06678"
-    date = "060620"
-    message = "ruyiy,mtygya!"
-    assert_equal expected, @enigma.decrypt(message, key, date)
   end
 
 end
