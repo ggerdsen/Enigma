@@ -39,6 +39,12 @@ class CrytpoToolsTest < Minitest::Test
     expected = [4,4,0,0]
     assert_equal expected, @enigma.generate_offsets(date)
   end
+  
+  def test_it_can_generate_random_offsets_via_offset_shift
+    date = "060620"
+    expected = [4,4,0,0]
+    assert_equal expected, @cryptotools.offset_shift(date)
+  end
 
   def test_it_can_combine_key_offset
     key = "23189"
@@ -56,7 +62,6 @@ class CrytpoToolsTest < Minitest::Test
     key = "06678"
     date = "060620"
     message = "Hello, World!"
-    # binding.pry
     assert_equal expected, @enigma.encrypt(message, key, date)
   end
 
@@ -69,7 +74,6 @@ class CrytpoToolsTest < Minitest::Test
     key = "06678"
     date = "060620"
     message = "ruyiy,mtygya!"
-    # binding.pry
     assert_equal expected, @enigma.decrypt(message, key, date)
   end
 
